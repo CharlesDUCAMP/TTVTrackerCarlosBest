@@ -34,7 +34,7 @@
     .blob-1 { width: 500px; height: 500px; background: var(--purple); top: -150px; left: -100px; }
     .blob-2 { width: 400px; height: 400px; background: var(--pink); bottom: -100px; right: -80px; }
 
-    .wrapper { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 20px 60px; }
+    .wrapper { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 20px 60px; }
 
     header { display: flex; align-items: center; gap: 14px; padding: 40px 0 40px; }
     .logo-icon { width: 44px; height: 44px; background: var(--purple); border-radius: 10px; display: grid; place-items: center; box-shadow: 0 0 24px rgba(145,71,255,.5); flex-shrink: 0; }
@@ -45,7 +45,6 @@
 
     /* Auth panel */
     #auth-section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; }
-
     #auth-loggedout { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     #auth-loggedin  { display: none; align-items: center; gap: 12px; flex-wrap: wrap; }
 
@@ -54,7 +53,7 @@
     .client-id-row input { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: .88rem; padding: 9px 14px; outline: none; transition: border-color .2s; }
     .client-id-row input:focus { border-color: var(--purple); }
 
-    .twitch-login-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--purple); color: #fff; border: none; border-radius: 10px; padding: 10px 20px; font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s; box-shadow: 0 4px 20px rgba(145,71,255,.35); white-space: nowrap; }
+    .twitch-login-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--purple); color: #fff; border: none; border-radius: 10px; padding: 10px 20px; font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: background .2s, transform .15s; box-shadow: 0 4px 20px rgba(145,71,255,.35); white-space: nowrap; }
     .twitch-login-btn:hover { background: var(--purple-dim); transform: translateY(-2px); }
     .twitch-login-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
 
@@ -62,10 +61,8 @@
     .auth-avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--purple); object-fit: cover; }
     .auth-name { font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; }
     .auth-ok { font-size: .78rem; color: var(--online); display: block; }
-
     .logout-btn { background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: 7px 14px; cursor: pointer; transition: border-color .2s, color .2s; }
     .logout-btn:hover { border-color: #ff6060; color: #ff6060; }
-
     .auth-hint { width: 100%; font-size: .78rem; color: var(--muted); margin-top: 2px; }
 
     /* Search */
@@ -76,7 +73,7 @@
     #username:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(145,71,255,.15); }
     #username::placeholder { color: var(--muted); }
 
-    .search-btn { background: linear-gradient(135deg, var(--purple), var(--purple-dim)); color: #fff; border: none; border-radius: 12px; padding: 0 28px; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .06em; cursor: pointer; transition: opacity .2s, transform .15s, box-shadow .2s; box-shadow: 0 4px 20px rgba(145,71,255,.35); white-space: nowrap; }
+    .search-btn { background: linear-gradient(135deg, var(--purple), var(--purple-dim)); color: #fff; border: none; border-radius: 12px; padding: 0 28px; font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .06em; cursor: pointer; transition: opacity .2s, transform .15s; box-shadow: 0 4px 20px rgba(145,71,255,.35); white-space: nowrap; }
     .search-btn:hover { opacity: .9; transform: translateY(-2px); }
     .search-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
 
@@ -101,23 +98,47 @@
     .online-toggle { display: flex; align-items: center; gap: 6px; font-size: .83rem; color: var(--muted); cursor: pointer; user-select: none; }
     .online-toggle input { accent-color: var(--online); cursor: pointer; }
 
-    /* Grid */
-    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    /* Loading progress */
+    #load-progress { display: none; text-align: center; padding: 40px 20px; }
+    #load-progress.visible { display: block; }
+    .progress-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 99px; height: 6px; margin: 16px auto; max-width: 300px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--pink)); border-radius: 99px; transition: width .3s ease; width: 0%; }
+    #load-progress p { color: var(--muted); font-size: .88rem; }
+    #load-progress strong { color: var(--text); }
 
-    .channel-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 16px 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s, box-shadow .2s; animation: cardIn .3s ease both; }
+    /* Grid */
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+
+    .channel-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px 14px 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; text-decoration: none; color: inherit; transition: border-color .2s, transform .2s, box-shadow .2s; animation: cardIn .25s ease both; }
     .channel-card:hover { border-color: var(--purple); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(145,71,255,.2); }
-    @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
     .card-avatar-wrap { position: relative; display: inline-block; }
-    .card-avatar { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); transition: border-color .2s; background: var(--surface); }
+    .card-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); transition: border-color .2s; background: var(--surface); }
     .channel-card:hover .card-avatar { border-color: var(--purple); }
-    .online-dot { position: absolute; bottom: 2px; right: 2px; width: 13px; height: 13px; background: var(--online); border-radius: 50%; border: 2px solid var(--card); box-shadow: 0 0 8px var(--online); }
-    .live-badge { position: absolute; top: -4px; right: -6px; background: #e91916; color: #fff; font-size: .55rem; font-weight: 700; padding: 2px 5px; border-radius: 4px; letter-spacing: .06em; }
-    .card-name { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.1; word-break: break-word; }
-    .card-display { font-size: .75rem; color: var(--muted); margin-top: -6px; }
-    .card-game { font-size: .72rem; color: var(--cyan); font-style: italic; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .card-viewers { font-size: .72rem; color: var(--muted); }
+    .online-dot { position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background: var(--online); border-radius: 50%; border: 2px solid var(--card); box-shadow: 0 0 8px var(--online); }
+    .live-badge { position: absolute; top: -4px; right: -6px; background: #e91916; color: #fff; font-size: .5rem; font-weight: 700; padding: 2px 5px; border-radius: 4px; letter-spacing: .06em; }
+
+    .card-name { font-family: 'Rajdhani', sans-serif; font-size: .95rem; font-weight: 700; line-height: 1.1; word-break: break-word; }
+    .card-display { font-size: .72rem; color: var(--muted); margin-top: -4px; }
+    .card-game { font-size: .7rem; color: var(--cyan); font-style: italic; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .card-viewers { font-size: .7rem; color: var(--muted); }
     .card-viewers span { color: var(--pink); font-weight: 500; }
+
+    /* Follow date */
+    .card-date {
+      font-size: .68rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 7px;
+      margin-top: 2px;
+      width: 100%;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .card-date .date-label { display: block; font-size: .6rem; text-transform: uppercase; letter-spacing: .07em; color: var(--border); margin-bottom: 1px; }
+    .card-date .date-val { color: var(--muted); }
+    .card-date .date-time { color: #4a5070; font-size: .63rem; }
 
     /* States */
     #message { text-align: center; padding: 60px 20px; color: var(--muted); font-size: .95rem; line-height: 1.6; display: none; }
@@ -130,10 +151,6 @@
     .spinner-ring { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--purple); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .spinner p { color: var(--muted); font-size: .88rem; }
-
-    #load-more { display: none; margin: 28px auto 0; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .9rem; padding: 12px 32px; cursor: pointer; transition: border-color .2s, color .2s; }
-    #load-more:hover { border-color: var(--purple); color: var(--text); }
-    #load-more.visible { display: block; }
 
     .help-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 12px; padding: 20px 24px; font-size: .84rem; line-height: 1.7; color: var(--muted); margin-top: 32px; }
     .help-box h3 { font-family: 'Rajdhani', sans-serif; font-size: 1rem; color: var(--text); margin-bottom: 10px; letter-spacing: .04em; }
@@ -164,7 +181,6 @@
 
     <!-- Auth panel -->
     <div id="auth-section">
-      <!-- Not logged in -->
       <div id="auth-loggedout">
         <div class="client-id-row">
           <label>Client ID</label>
@@ -176,8 +192,6 @@
         </button>
         <p class="auth-hint">Entre ton Client ID, clique le bouton — tu ne le feras qu'une seule fois.</p>
       </div>
-
-      <!-- Logged in -->
       <div id="auth-loggedin">
         <div class="auth-info">
           <img id="my-avatar" class="auth-avatar" src="" alt="" />
@@ -215,12 +229,19 @@
     <!-- Controls -->
     <div id="controls">
       <input type="text" id="filter-input" placeholder="🔍 Filtrer les chaînes…" />
-      <button class="sort-btn active" id="sort-follow">Ordre de suivi</button>
+      <button class="sort-btn active" id="sort-follow">Plus récent d'abord</button>
+      <button class="sort-btn" id="sort-oldest">Plus ancien d'abord</button>
       <button class="sort-btn" id="sort-name">A → Z</button>
       <label class="online-toggle"><input type="checkbox" id="online-only" /> Live uniquement</label>
     </div>
 
-    <div class="spinner" id="spinner"><div class="spinner-ring"></div><p>Chargement en cours…</p></div>
+    <!-- Loading progress -->
+    <div id="load-progress">
+      <p id="progress-text">Chargement… <strong id="progress-count">0</strong> chaînes récupérées</p>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="spinner" id="spinner"><div class="spinner-ring"></div><p>Connexion en cours…</p></div>
 
     <div id="message">
       <span class="big" id="msg-emoji">🔐</span>
@@ -229,7 +250,6 @@
     </div>
 
     <div id="grid"></div>
-    <button id="load-more">Charger plus</button>
 
     <div class="help-box" id="help-box">
       <h3>🔑 Comment obtenir ton Client ID ?</h3>
@@ -240,24 +260,19 @@
         <li>Clique <strong>Créer</strong> puis <strong>Gérer</strong> → copie ton <code>Client ID</code>.</li>
         <li>Colle-le dans le champ ci-dessus et clique <strong>Se connecter avec Twitch</strong>.</li>
       </ol>
-      <p style="margin-top:10px;">💡 Tu n'auras à te connecter qu'<strong>une seule fois</strong> — le token est sauvegardé automatiquement dans ton navigateur.</p>
+      <p style="margin-top:10px;">💡 Tu n'auras à te connecter qu'<strong>une seule fois</strong> — le token est sauvegardé automatiquement.</p>
     </div>
   </div>
 
   <script>
-    /* ── Keys ── */
     const KEY_TOKEN = 'twitch_v2_token';
     const KEY_CID   = 'twitch_v2_cid';
 
-    /* ── State ── */
     let accessToken  = null;
     let clientId     = null;
     let allChannels  = [];
-    let cursor       = null;
-    let targetUserId = null;
-    let sortMode     = 'follow';
+    let sortMode     = 'recent';
 
-    /* ── DOM ── */
     const $           = id => document.getElementById(id);
     const clientIdEl  = $('client-id');
     const loginBtn    = $('login-btn');
@@ -267,12 +282,19 @@
     const searchBtn   = $('search-btn');
     const usernameEl  = $('username');
     const filterInput = $('filter-input');
-    const loadMoreBtn = $('load-more');
     const helpBox     = $('help-box');
 
-    /* Show current page URL as redirect hint */
     const redirectUri = window.location.origin + window.location.pathname;
     $('redirect-hint').textContent = redirectUri;
+
+    /* ══ FORMAT DATE ══════════════════════ */
+    function formatFollowDate(isoString) {
+      if (!isoString) return null;
+      const d = new Date(isoString);
+      const date = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+      const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      return { date, time };
+    }
 
     /* ══ AUTH ══════════════════════════════ */
 
@@ -280,8 +302,7 @@
       clientId = localStorage.getItem(KEY_CID) || '';
       if (clientId) clientIdEl.value = clientId;
 
-      /* Check URL hash for token (returning from Twitch OAuth) */
-      const hash   = window.location.hash;
+      const hash = window.location.hash;
       if (hash.includes('access_token')) {
         const params = new URLSearchParams(hash.slice(1));
         const token  = params.get('access_token');
@@ -322,9 +343,7 @@
       try {
         const data = await twitchFetch('users');
         showLoggedIn(data.data[0]);
-      } catch {
-        logout();
-      }
+      } catch { logout(); }
     }
 
     function doLogin() {
@@ -332,19 +351,17 @@
       if (!id) { alert('Entre ton Client ID d\'abord !'); return; }
       localStorage.setItem(KEY_CID, id);
       clientId = id;
-      const scope = 'user:read:follows';
-      const url   = `https://id.twitch.tv/oauth2/authorize?client_id=${id}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent(scope)}`;
+      const url = `https://id.twitch.tv/oauth2/authorize?client_id=${id}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent('user:read:follows')}`;
       window.location.href = url;
     }
 
     function logout() {
       accessToken = null;
       localStorage.removeItem(KEY_TOKEN);
-      allChannels = []; cursor = null; targetUserId = null;
+      allChannels = [];
       $('grid').innerHTML = '';
       $('stats-bar').classList.remove('visible');
       $('controls').classList.remove('visible');
-      loadMoreBtn.classList.remove('visible');
       showLoggedOut();
     }
 
@@ -365,10 +382,28 @@
       return d.data[0];
     }
 
-    async function getFollowings(userId, after = null) {
-      let url = `channels/followed?user_id=${userId}&first=100`;
-      if (after) url += `&after=${after}`;
-      return twitchFetch(url);
+    /* Fetch ALL followings pages automatically */
+    async function getAllFollowings(userId) {
+      let all    = [];
+      let cursor = null;
+      let page   = 0;
+
+      do {
+        let url = `channels/followed?user_id=${userId}&first=100`;
+        if (cursor) url += `&after=${cursor}`;
+        const data = await twitchFetch(url);
+        all.push(...(data.data || []));
+        cursor = data.pagination?.cursor || null;
+        page++;
+
+        // Update progress bar
+        updateProgress(all.length, null);
+
+        // Small delay to avoid rate limiting on large accounts
+        if (cursor) await sleep(150);
+      } while (cursor);
+
+      return all;
     }
 
     async function getLiveStreams(ids) {
@@ -401,68 +436,72 @@
       return channels.map(ch => ({ ...ch, stream: map[ch.broadcaster_id]||null }));
     }
 
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+    /* ══ PROGRESS ══════════════════════════ */
+
+    function updateProgress(count, total) {
+      $('progress-count').textContent = count;
+      const pct = total ? Math.min(100, Math.round(count / total * 100)) : null;
+      $('progress-fill').style.width = pct ? `${pct}%` : '30%';
+    }
+
+    function showProgress(on) {
+      $('load-progress').classList.toggle('visible', on);
+    }
+
     /* ══ SEARCH ════════════════════════════ */
 
     async function doSearch() {
       const login = usernameEl.value.trim();
       if (!login) return;
-      allChannels = []; cursor = null; targetUserId = null;
+
+      allChannels = [];
       $('grid').innerHTML = '';
-      loadMoreBtn.classList.remove('visible');
       $('stats-bar').classList.remove('visible');
       $('controls').classList.remove('visible');
-      setSpinner(true); hideMessage(); searchBtn.disabled = true;
+      setSpinner(true);
+      hideMessage();
+      showProgress(false);
+      searchBtn.disabled = true;
 
       try {
         const user = await getUser(login);
-        targetUserId = user.id;
         $('user-avatar').src         = user.profile_image_url;
         $('user-name').textContent   = user.display_name;
         $('user-handle').textContent = '@' + user.login;
 
-        const page = await getFollowings(user.id);
-        if (!page.data?.length) {
-          setSpinner(false);
+        setSpinner(false);
+        showProgress(true);
+
+        // Fetch ALL pages
+        allChannels = await getAllFollowings(user.id);
+
+        if (!allChannels.length) {
+          showProgress(false);
           $('stats-bar').classList.add('visible');
           showMessage('🔭', `${user.display_name} ne suit personne.`, false);
           return;
         }
-        cursor      = page.pagination?.cursor || null;
-        allChannels = page.data;
 
+        // Enrich with profiles + live data
+        updateProgress(allChannels.length, allChannels.length);
         const streams = await getLiveStreams(allChannels.map(c => c.broadcaster_id));
         allChannels   = mergeLive(allChannels, streams);
         allChannels   = await enrichProfiles(allChannels);
 
-        setSpinner(false);
+        showProgress(false);
         $('stats-bar').classList.add('visible');
         $('controls').classList.add('visible');
         applyFilters();
-        if (cursor) loadMoreBtn.classList.add('visible');
 
       } catch (err) {
         setSpinner(false);
+        showProgress(false);
         showMessage('❌', err.message, true);
       } finally {
         searchBtn.disabled = false;
       }
-    }
-
-    async function loadMore() {
-      if (!cursor || !targetUserId) return;
-      loadMoreBtn.textContent = 'Chargement…'; loadMoreBtn.disabled = true;
-      try {
-        const page = await getFollowings(targetUserId, cursor);
-        cursor = page.pagination?.cursor || null;
-        let newCh  = page.data || [];
-        const str  = await getLiveStreams(newCh.map(c => c.broadcaster_id));
-        newCh = mergeLive(newCh, str);
-        newCh = await enrichProfiles(newCh);
-        allChannels.push(...newCh);
-        applyFilters();
-        if (!cursor) loadMoreBtn.classList.remove('visible');
-      } catch (err) { alert('Erreur : ' + err.message); }
-      finally { loadMoreBtn.textContent = 'Charger plus'; loadMoreBtn.disabled = false; }
     }
 
     /* ══ RENDER ════════════════════════════ */
@@ -470,12 +509,21 @@
     function applyFilters() {
       const q  = filterInput.value.toLowerCase().trim();
       const lo = $('online-only').checked;
-      let f    = allChannels.filter(ch => {
+
+      let f = allChannels.filter(ch => {
         if (lo && !ch.stream) return false;
         if (q && !ch.broadcaster_name.toLowerCase().includes(q) && !ch.broadcaster_login.includes(q)) return false;
         return true;
       });
-      if (sortMode === 'name') f.sort((a,b) => a.broadcaster_name.localeCompare(b.broadcaster_name,'fr',{sensitivity:'base'}));
+
+      if (sortMode === 'recent') {
+        f.sort((a,b) => new Date(b.followed_at) - new Date(a.followed_at));
+      } else if (sortMode === 'oldest') {
+        f.sort((a,b) => new Date(a.followed_at) - new Date(b.followed_at));
+      } else if (sortMode === 'name') {
+        f.sort((a,b) => a.broadcaster_name.localeCompare(b.broadcaster_name,'fr',{sensitivity:'base'}));
+      }
+
       renderCards(f);
       $('count-total').textContent = allChannels.length;
       $('count-live').textContent  = allChannels.filter(c=>c.stream).length;
@@ -486,31 +534,45 @@
       channels.forEach((ch, i) => {
         const a = document.createElement('a');
         a.className = 'channel-card';
-        a.href = `https://twitch.tv/${ch.broadcaster_login}`;
-        a.target = '_blank'; a.rel = 'noopener noreferrer';
-        a.style.animationDelay = `${Math.min(i,30)*18}ms`;
+        a.href      = `https://twitch.tv/${ch.broadcaster_login}`;
+        a.target    = '_blank'; a.rel = 'noopener noreferrer';
+        a.style.animationDelay = `${Math.min(i, 40) * 12}ms`;
 
+        // Avatar
         const wrap = document.createElement('div'); wrap.className = 'card-avatar-wrap';
         const img  = document.createElement('img');  img.className = 'card-avatar'; img.alt = ch.broadcaster_name; img.loading = 'lazy';
         img.src = ch.profile_image_url || '';
         img.onerror = () => { img.src = 'https://static-cdn.jtvnw.net/user-default-pictures-uv/ead5c8b2-f0c3-11e9-9a2d-784f43822e80-profile_image-70x70.png'; };
         wrap.appendChild(img);
-
         if (ch.stream) {
           const dot = document.createElement('div'); dot.className = 'online-dot'; wrap.appendChild(dot);
           const b   = document.createElement('span'); b.className = 'live-badge'; b.textContent = 'LIVE'; wrap.appendChild(b);
         }
 
+        // Name
         const name = document.createElement('div'); name.className = 'card-name'; name.textContent = ch.broadcaster_name;
-        a.appendChild(wrap); a.appendChild(name);
+        a.appendChild(wrap);
+        a.appendChild(name);
 
         if (ch.broadcaster_name.toLowerCase() !== ch.broadcaster_login) {
           const h = document.createElement('div'); h.className = 'card-display'; h.textContent = '@' + ch.broadcaster_login; a.appendChild(h);
         }
+
+        // Live info
         if (ch.stream) {
           const g = document.createElement('div'); g.className = 'card-game'; g.textContent = ch.stream.game_name || 'Stream en cours'; a.appendChild(g);
           const v = document.createElement('div'); v.className = 'card-viewers'; v.innerHTML = `<span>${ch.stream.viewer_count?.toLocaleString('fr-FR')}</span> viewers`; a.appendChild(v);
         }
+
+        // Follow date
+        if (ch.followed_at) {
+          const fd = formatFollowDate(ch.followed_at);
+          const dateEl = document.createElement('div');
+          dateEl.className = 'card-date';
+          dateEl.innerHTML = `<span class="date-label">Suivi depuis</span><span class="date-val">${fd.date}</span> <span class="date-time">à ${fd.time}</span>`;
+          a.appendChild(dateEl);
+        }
+
         grid.appendChild(a);
       });
     }
@@ -533,9 +595,25 @@
     usernameEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !searchBtn.disabled) doSearch(); });
     filterInput.addEventListener('input', applyFilters);
     $('online-only').addEventListener('change', applyFilters);
-    $('sort-follow').addEventListener('click', () => { sortMode='follow'; $('sort-follow').classList.add('active'); $('sort-name').classList.remove('active'); applyFilters(); });
-    $('sort-name').addEventListener('click', () => { sortMode='name'; $('sort-name').classList.add('active'); $('sort-follow').classList.remove('active'); applyFilters(); });
-    loadMoreBtn.addEventListener('click', loadMore);
+
+    $('sort-follow').addEventListener('click', () => {
+      sortMode = 'recent';
+      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
+      $('sort-follow').classList.add('active');
+      applyFilters();
+    });
+    $('sort-oldest').addEventListener('click', () => {
+      sortMode = 'oldest';
+      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
+      $('sort-oldest').classList.add('active');
+      applyFilters();
+    });
+    $('sort-name').addEventListener('click', () => {
+      sortMode = 'name';
+      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
+      $('sort-name').classList.add('active');
+      applyFilters();
+    });
 
     init();
   </script>
