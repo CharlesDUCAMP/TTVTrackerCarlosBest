@@ -148,7 +148,7 @@
     <div class="search-area">
       <div class="search-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="username" placeholder="Pseudo Twitch (ex: xQc, Squeezie, …)" autocomplete="off" autofocus />
+        <input type="text" id="username" placeholder="Pseudo Twitch (ex: xQc, Squeezie…)" autocomplete="off" autofocus />
       </div>
       <button class="search-btn" id="search-btn">Rechercher</button>
     </div>
@@ -194,74 +194,79 @@
   <script>
     /* ──────────────────────────────────────
        TWITCH GRAPHQL (PUBLIC, NO AUTH)
+       Uses raw GraphQL queries — more robust than persisted hashes.
     ────────────────────────────────────── */
     const GQL_URL       = 'https://gql.twitch.tv/gql';
     const GQL_CLIENT_ID = 'kimne78kx3ncx6brgo4mv6wki5h1ko'; // Twitch's own public web client ID
 
-    async function gqlRequest(operation) {
+    async function gqlRequest(query, variables) {
       const res = await fetch(GQL_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Client-ID': GQL_CLIENT_ID },
-        body: JSON.stringify(operation)
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8', 'Client-ID': GQL_CLIENT_ID },
+        body: JSON.stringify({ query, variables })
       });
       if (!res.ok) throw new Error(`Erreur réseau (${res.status})`);
-      return res.json();
+      const json = await res.json();
+      if (json.errors?.length) throw new Error(json.errors[0].message || 'Erreur GraphQL');
+      return json.data;
     }
 
-    /* Get user info by login */
-    async function getUserByLogin(login) {
-      const data = await gqlRequest({
-        operationName: 'UseLive',
-        variables: { channelLogin: login.toLowerCase() },
-        extensions: {
-          persistedQuery: {
-            version: 1,
-            sha256Hash: '639d5f11bfb8bf3053b424d9ef650d04c4ebb7d94711d644afb08fe9a0fad5d9'
-          }
-        }
-      });
-      const user = data?.data?.user;
-      if (!user) throw new Error(`Utilisateur "${login}" introuvable.`);
-      return user;
-    }
-
-    /* Get full profile (avatar, follower count, etc) */
+    /* Get user profile */
     async function getProfile(login) {
-      const data = await gqlRequest({
-        operationName: 'ChannelShell',
-        variables: { login: login.toLowerCase(), lcpLoginPageEnabled: false },
-        extensions: {
-          persistedQuery: {
-            version: 1,
-            sha256Hash: '580ab410bcd0c1ad194224957ae2241e5d252b2c5173d8e0cce9d32d5bb14efe'
+      const query = `
+        query GetUser($login: String!) {
+          user(login: $login) {
+            id
+            login
+            displayName
+            profileImageURL(width: 150)
+            followers { totalCount }
+            follows { totalCount }
           }
         }
-      });
-      return data?.data?.userOrError;
+      `;
+      const data = await gqlRequest(query, { login: login.toLowerCase() });
+      if (!data?.user) throw new Error(`Utilisateur "${login}" introuvable.`);
+      return data.user;
     }
 
-    /* Get followings page (50 at a time) */
+    /* Get one page of followings */
     async function getFollowingsPage(login, cursor) {
-      const data = await gqlRequest({
-        operationName: 'ChannelFollows',
-        variables: {
-          login: login.toLowerCase(),
-          order: 'DESC',
-          limit: 100,
-          cursor: cursor || null
-        },
-        extensions: {
-          persistedQuery: {
-            version: 1,
-            sha256Hash: '4b9cb31b54b9213e5760f2f6e9e935ad09924cac2f78aac51f8a64d85f028ed0'
+      const query = `
+        query GetFollows($login: String!, $cursor: Cursor, $limit: Int!) {
+          user(login: $login) {
+            follows(first: $limit, after: $cursor) {
+              totalCount
+              edges {
+                cursor
+                followedAt
+                node {
+                  id
+                  login
+                  displayName
+                  profileImageURL(width: 70)
+                  stream {
+                    id
+                    viewersCount
+                    game { id name }
+                  }
+                }
+              }
+              pageInfo { hasNextPage }
+            }
           }
         }
+      `;
+      const data = await gqlRequest(query, {
+        login: login.toLowerCase(),
+        cursor: cursor || null,
+        limit: 100
       });
-      return data?.data?.user?.follows;
+      return data?.user?.follows;
     }
 
     /* Get all followings via pagination */
-    async function getAllFollowings(login, totalEstimate, onProgress) {
+    async function getAllFollowings(login, totalHint, onProgress) {
       const all = [];
       let cursor = null;
       let safety = 0;
@@ -271,17 +276,18 @@
         if (!page || !page.edges) break;
 
         for (const edge of page.edges) {
+          if (!edge.node) continue;
           all.push({
-            id:           edge.node.id,
-            login:        edge.node.login,
-            displayName:  edge.node.displayName,
-            avatar:       edge.node.profileImageURL,
-            followedAt:   edge.followedAt,
-            stream:       edge.node.stream || null
+            id:          edge.node.id,
+            login:       edge.node.login,
+            displayName: edge.node.displayName,
+            avatar:      edge.node.profileImageURL,
+            followedAt:  edge.followedAt,
+            stream:      edge.node.stream || null
           });
         }
 
-        onProgress(all.length, totalEstimate);
+        onProgress(all.length, page.totalCount || totalHint);
 
         if (!page.pageInfo?.hasNextPage) break;
         cursor = page.edges[page.edges.length - 1]?.cursor;
@@ -326,9 +332,6 @@
       try {
         // Get user profile
         const profile = await getProfile(login);
-        if (!profile || profile.__typename !== 'User') {
-          throw new Error(`Utilisateur "${login}" introuvable.`);
-        }
 
         $('user-avatar').src         = profile.profileImageURL;
         $('user-name').textContent   = profile.displayName;
@@ -337,7 +340,8 @@
         $('progress-text').textContent = `Récupération des followings de ${profile.displayName}…`;
 
         // Get followings (with progress)
-        allChannels = await getAllFollowings(login, null, (count, total) => {
+        const totalHint = profile.follows?.totalCount;
+        allChannels = await getAllFollowings(login, totalHint, (count, total) => {
           updateProgress(count, total);
         });
 
