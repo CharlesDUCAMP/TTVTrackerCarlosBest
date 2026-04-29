@@ -36,37 +36,15 @@
 
     .wrapper { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 20px 60px; }
 
-    header { display: flex; align-items: center; gap: 14px; padding: 40px 0 40px; }
+    header { display: flex; align-items: center; gap: 14px; padding: 40px 0 36px; }
     .logo-icon { width: 44px; height: 44px; background: var(--purple); border-radius: 10px; display: grid; place-items: center; box-shadow: 0 0 24px rgba(145,71,255,.5); flex-shrink: 0; }
     .logo-icon svg { width: 24px; height: 24px; fill: #fff; }
     header h1 { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 700; letter-spacing: .02em; line-height: 1; }
     header h1 span { color: var(--purple); }
     .subtitle { font-size: .82rem; color: var(--muted); margin-top: 4px; font-weight: 300; }
 
-    /* Auth panel */
-    #auth-section { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; }
-    #auth-loggedout { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    #auth-loggedin  { display: none; align-items: center; gap: 12px; flex-wrap: wrap; }
-
-    .client-id-row { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px; }
-    .client-id-row label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
-    .client-id-row input { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: .88rem; padding: 9px 14px; outline: none; transition: border-color .2s; }
-    .client-id-row input:focus { border-color: var(--purple); }
-
-    .twitch-login-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--purple); color: #fff; border: none; border-radius: 10px; padding: 10px 20px; font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .04em; cursor: pointer; transition: background .2s, transform .15s; box-shadow: 0 4px 20px rgba(145,71,255,.35); white-space: nowrap; }
-    .twitch-login-btn:hover { background: var(--purple-dim); transform: translateY(-2px); }
-    .twitch-login-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
-
-    .auth-info { display: flex; align-items: center; gap: 12px; flex: 1; }
-    .auth-avatar { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--purple); object-fit: cover; }
-    .auth-name { font-family: 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .auth-ok { font-size: .78rem; color: var(--online); display: block; }
-    .logout-btn { background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .82rem; padding: 7px 14px; cursor: pointer; transition: border-color .2s, color .2s; }
-    .logout-btn:hover { border-color: #ff6060; color: #ff6060; }
-    .auth-hint { width: 100%; font-size: .78rem; color: var(--muted); margin-top: 2px; }
-
     /* Search */
-    .search-area { display: flex; gap: 10px; margin-bottom: 32px; }
+    .search-area { display: flex; gap: 10px; margin-bottom: 28px; }
     .search-wrap { flex: 1; position: relative; }
     .search-wrap svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; opacity: .4; pointer-events: none; }
     #username { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 1rem; padding: 14px 18px 14px 46px; outline: none; transition: border-color .2s, box-shadow .2s; }
@@ -125,17 +103,7 @@
     .card-viewers { font-size: .7rem; color: var(--muted); }
     .card-viewers span { color: var(--pink); font-weight: 500; }
 
-    /* Follow date */
-    .card-date {
-      font-size: .68rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 7px;
-      margin-top: 2px;
-      width: 100%;
-      text-align: center;
-      line-height: 1.5;
-    }
+    .card-date { font-size: .68rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 7px; margin-top: 2px; width: 100%; text-align: center; line-height: 1.5; }
     .card-date .date-label { display: block; font-size: .6rem; text-transform: uppercase; letter-spacing: .07em; color: var(--border); margin-bottom: 1px; }
     .card-date .date-val { color: var(--muted); }
     .card-date .date-time { color: #4a5070; font-size: .63rem; }
@@ -146,21 +114,13 @@
     #message .big { font-size: 2.5rem; display: block; margin-bottom: 12px; }
     #message.error .detail { color: #ff8080; font-size: .8rem; margin-top: 8px; }
 
-    .spinner { display: none; text-align: center; padding: 60px 0; }
-    .spinner.visible { display: block; }
-    .spinner-ring { width: 48px; height: 48px; border: 3px solid var(--border); border-top-color: var(--purple); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 16px; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spinner p { color: var(--muted); font-size: .88rem; }
-
-    .help-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 12px; padding: 20px 24px; font-size: .84rem; line-height: 1.7; color: var(--muted); margin-top: 32px; }
-    .help-box h3 { font-family: 'Rajdhani', sans-serif; font-size: 1rem; color: var(--text); margin-bottom: 10px; letter-spacing: .04em; }
-    .help-box code { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: .8rem; color: var(--cyan); }
-    .help-box a { color: var(--purple); }
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 12px; padding: 16px 22px; font-size: .82rem; line-height: 1.6; color: var(--muted); margin-bottom: 24px; }
+    .info-box strong { color: var(--text); }
+    .info-box .warn { color: #ffc14d; }
 
     @media (max-width: 520px) {
       .search-area { flex-direction: column; }
       .search-btn { padding: 14px; }
-      #auth-loggedout { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
@@ -179,38 +139,18 @@
       </div>
     </header>
 
-    <!-- Auth panel -->
-    <div id="auth-section">
-      <div id="auth-loggedout">
-        <div class="client-id-row">
-          <label>Client ID</label>
-          <input type="text" id="client-id" placeholder="Ton Twitch Client ID…" autocomplete="off" />
-        </div>
-        <button class="twitch-login-btn" id="login-btn">
-          <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-          Se connecter avec Twitch
-        </button>
-        <p class="auth-hint">Entre ton Client ID, clique le bouton — tu ne le feras qu'une seule fois.</p>
-      </div>
-      <div id="auth-loggedin">
-        <div class="auth-info">
-          <img id="my-avatar" class="auth-avatar" src="" alt="" />
-          <div>
-            <span class="auth-name" id="my-name"></span>
-            <span class="auth-ok">✅ Connecté — recherche n'importe quel pseudo</span>
-          </div>
-        </div>
-        <button class="logout-btn" id="logout-btn">Se déconnecter</button>
-      </div>
+    <div class="info-box">
+      ✨ Pas de connexion requise — tape juste un pseudo Twitch et voilà ! <br>
+      <span class="warn">⚠️</span> Cet outil utilise une API publique non-officielle de Twitch. Si elle cesse de fonctionner, ce sera une décision de Twitch.
     </div>
 
     <!-- Search -->
     <div class="search-area">
       <div class="search-wrap">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="username" placeholder="Pseudo Twitch à rechercher (ex: xQc, Squeezie…)" autocomplete="off" />
+        <input type="text" id="username" placeholder="Pseudo Twitch (ex: xQc, Squeezie, camieiie…)" autocomplete="off" autofocus />
       </div>
-      <button class="search-btn" id="search-btn" disabled>Rechercher</button>
+      <button class="search-btn" id="search-btn">Rechercher</button>
     </div>
 
     <!-- Stats bar -->
@@ -229,229 +169,146 @@
     <!-- Controls -->
     <div id="controls">
       <input type="text" id="filter-input" placeholder="🔍 Filtrer les chaînes…" />
-      <button class="sort-btn active" id="sort-follow">Plus récent d'abord</button>
-      <button class="sort-btn" id="sort-oldest">Plus ancien d'abord</button>
+      <button class="sort-btn active" id="sort-recent">Plus récent</button>
+      <button class="sort-btn" id="sort-oldest">Plus ancien</button>
       <button class="sort-btn" id="sort-name">A → Z</button>
       <label class="online-toggle"><input type="checkbox" id="online-only" /> Live uniquement</label>
     </div>
 
     <!-- Loading progress -->
     <div id="load-progress">
-      <p id="progress-text">Chargement… <strong id="progress-count">0</strong> chaînes récupérées</p>
+      <p><strong id="progress-text">Récupération des followings…</strong></p>
+      <p style="margin-top:6px;"><strong id="progress-count">0</strong> chaînes récupérées</p>
       <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
     </div>
 
-    <div class="spinner" id="spinner"><div class="spinner-ring"></div><p>Connexion en cours…</p></div>
-
     <div id="message">
-      <span class="big" id="msg-emoji">🔐</span>
-      <span id="msg-text">Connecte-toi avec Twitch pour commencer.</span>
+      <span class="big" id="msg-emoji">👾</span>
+      <span id="msg-text">Entre un pseudo Twitch pour commencer.</span>
       <div class="detail" id="msg-detail"></div>
     </div>
 
     <div id="grid"></div>
-
-    <div class="help-box" id="help-box">
-      <h3>🔑 Comment obtenir ton Client ID ?</h3>
-      <ol style="padding-left:18px; margin-top:4px;">
-        <li>Va sur <a href="https://dev.twitch.tv/console" target="_blank">dev.twitch.tv/console</a> et connecte-toi.</li>
-        <li>Clique <strong>Enregistrer votre application</strong>.</li>
-        <li>Nom : ce que tu veux · OAuth Redirect URL : <code id="redirect-hint"></code> · Catégorie : <strong>Analytics Tool</strong> · Type : <strong>Confidentiel</strong>.</li>
-        <li>Clique <strong>Créer</strong> puis <strong>Gérer</strong> → copie ton <code>Client ID</code>.</li>
-        <li>Colle-le dans le champ ci-dessus et clique <strong>Se connecter avec Twitch</strong>.</li>
-      </ol>
-      <p style="margin-top:10px;">💡 Tu n'auras à te connecter qu'<strong>une seule fois</strong> — le token est sauvegardé automatiquement.</p>
-    </div>
   </div>
 
   <script>
-    const KEY_TOKEN = 'twitch_v2_token';
-    const KEY_CID   = 'twitch_v2_cid';
+    /* ──────────────────────────────────────
+       TWITCH GRAPHQL (PUBLIC, NO AUTH)
+    ────────────────────────────────────── */
+    const GQL_URL       = 'https://gql.twitch.tv/gql';
+    const GQL_CLIENT_ID = 'kimne78kx3ncx6brgo4mv6wki5h1ko'; // Twitch's own public web client ID
 
-    let accessToken  = null;
-    let clientId     = null;
-    let allChannels  = [];
-    let sortMode     = 'recent';
-
-    const $           = id => document.getElementById(id);
-    const clientIdEl  = $('client-id');
-    const loginBtn    = $('login-btn');
-    const logoutBtn   = $('logout-btn');
-    const authOut     = $('auth-loggedout');
-    const authIn      = $('auth-loggedin');
-    const searchBtn   = $('search-btn');
-    const usernameEl  = $('username');
-    const filterInput = $('filter-input');
-    const helpBox     = $('help-box');
-
-    const redirectUri = window.location.origin + window.location.pathname;
-    $('redirect-hint').textContent = redirectUri;
-
-    /* ══ FORMAT DATE ══════════════════════ */
-    function formatFollowDate(isoString) {
-      if (!isoString) return null;
-      const d = new Date(isoString);
-      const date = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
-      const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-      return { date, time };
-    }
-
-    /* ══ AUTH ══════════════════════════════ */
-
-    function init() {
-      clientId = localStorage.getItem(KEY_CID) || '';
-      if (clientId) clientIdEl.value = clientId;
-
-      const hash = window.location.hash;
-      if (hash.includes('access_token')) {
-        const params = new URLSearchParams(hash.slice(1));
-        const token  = params.get('access_token');
-        if (token) {
-          accessToken = token;
-          localStorage.setItem(KEY_TOKEN, token);
-          history.replaceState(null, '', window.location.pathname);
-        }
-      }
-
-      if (!accessToken) accessToken = localStorage.getItem(KEY_TOKEN);
-
-      if (accessToken && clientId) {
-        fetchMe();
-      } else {
-        showLoggedOut();
-      }
-    }
-
-    function showLoggedOut() {
-      authOut.style.display = 'flex';
-      authIn.style.display  = 'none';
-      searchBtn.disabled    = true;
-      showMessage('🔐', 'Connecte-toi avec Twitch pour commencer.', false);
-    }
-
-    function showLoggedIn(me) {
-      authOut.style.display = 'none';
-      authIn.style.display  = 'flex';
-      $('my-avatar').src    = me.profile_image_url;
-      $('my-name').textContent = me.display_name;
-      searchBtn.disabled    = false;
-      helpBox.style.display = 'none';
-      showMessage('👾', 'Entre un pseudo Twitch pour voir ses followings.', false);
-    }
-
-    async function fetchMe() {
-      try {
-        const data = await twitchFetch('users');
-        showLoggedIn(data.data[0]);
-      } catch { logout(); }
-    }
-
-    function doLogin() {
-      const id = clientIdEl.value.trim();
-      if (!id) { alert('Entre ton Client ID d\'abord !'); return; }
-      localStorage.setItem(KEY_CID, id);
-      clientId = id;
-      const url = `https://id.twitch.tv/oauth2/authorize?client_id=${id}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent('user:read:follows')}`;
-      window.location.href = url;
-    }
-
-    function logout() {
-      accessToken = null;
-      localStorage.removeItem(KEY_TOKEN);
-      allChannels = [];
-      $('grid').innerHTML = '';
-      $('stats-bar').classList.remove('visible');
-      $('controls').classList.remove('visible');
-      showLoggedOut();
-    }
-
-    /* ══ API ═══════════════════════════════ */
-
-    async function twitchFetch(path) {
-      const res = await fetch(`https://api.twitch.tv/helix/${path}`, {
-        headers: { 'Authorization': `Bearer ${accessToken}`, 'Client-Id': clientId }
+    async function gqlRequest(operation) {
+      const res = await fetch(GQL_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Client-ID': GQL_CLIENT_ID },
+        body: JSON.stringify(operation)
       });
-      if (res.status === 401) { logout(); throw new Error('Session expirée. Reconnecte-toi.'); }
-      if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.message || `Erreur ${res.status}`); }
+      if (!res.ok) throw new Error(`Erreur réseau (${res.status})`);
       return res.json();
     }
 
-    async function getUser(login) {
-      const d = await twitchFetch(`users?login=${encodeURIComponent(login)}`);
-      if (!d.data?.length) throw new Error(`Utilisateur "${login}" introuvable.`);
-      return d.data[0];
+    /* Get user info by login */
+    async function getUserByLogin(login) {
+      const data = await gqlRequest({
+        operationName: 'UseLive',
+        variables: { channelLogin: login.toLowerCase() },
+        extensions: {
+          persistedQuery: {
+            version: 1,
+            sha256Hash: '639d5f11bfb8bf3053b424d9ef650d04c4ebb7d94711d644afb08fe9a0fad5d9'
+          }
+        }
+      });
+      const user = data?.data?.user;
+      if (!user) throw new Error(`Utilisateur "${login}" introuvable.`);
+      return user;
     }
 
-    /* Fetch ALL followings pages automatically */
-    async function getAllFollowings(userId) {
-      let all    = [];
+    /* Get full profile (avatar, follower count, etc) */
+    async function getProfile(login) {
+      const data = await gqlRequest({
+        operationName: 'ChannelShell',
+        variables: { login: login.toLowerCase(), lcpLoginPageEnabled: false },
+        extensions: {
+          persistedQuery: {
+            version: 1,
+            sha256Hash: '580ab410bcd0c1ad194224957ae2241e5d252b2c5173d8e0cce9d32d5bb14efe'
+          }
+        }
+      });
+      return data?.data?.userOrError;
+    }
+
+    /* Get followings page (50 at a time) */
+    async function getFollowingsPage(login, cursor) {
+      const data = await gqlRequest({
+        operationName: 'ChannelFollows',
+        variables: {
+          login: login.toLowerCase(),
+          order: 'DESC',
+          limit: 100,
+          cursor: cursor || null
+        },
+        extensions: {
+          persistedQuery: {
+            version: 1,
+            sha256Hash: '4b9cb31b54b9213e5760f2f6e9e935ad09924cac2f78aac51f8a64d85f028ed0'
+          }
+        }
+      });
+      return data?.data?.user?.follows;
+    }
+
+    /* Get all followings via pagination */
+    async function getAllFollowings(login, totalEstimate, onProgress) {
+      const all = [];
       let cursor = null;
-      let page   = 0;
+      let safety = 0;
 
-      do {
-        let url = `channels/followed?user_id=${userId}&first=100`;
-        if (cursor) url += `&after=${cursor}`;
-        const data = await twitchFetch(url);
-        all.push(...(data.data || []));
-        cursor = data.pagination?.cursor || null;
-        page++;
+      while (safety++ < 500) {
+        const page = await getFollowingsPage(login, cursor);
+        if (!page || !page.edges) break;
 
-        // Update progress bar
-        updateProgress(all.length, null);
+        for (const edge of page.edges) {
+          all.push({
+            id:           edge.node.id,
+            login:        edge.node.login,
+            displayName:  edge.node.displayName,
+            avatar:       edge.node.profileImageURL,
+            followedAt:   edge.followedAt,
+            stream:       edge.node.stream || null
+          });
+        }
 
-        // Small delay to avoid rate limiting on large accounts
-        if (cursor) await sleep(150);
-      } while (cursor);
+        onProgress(all.length, totalEstimate);
+
+        if (!page.pageInfo?.hasNextPage) break;
+        cursor = page.edges[page.edges.length - 1]?.cursor;
+        if (!cursor) break;
+
+        await sleep(120); // gentle rate-limiting
+      }
 
       return all;
     }
 
-    async function getLiveStreams(ids) {
-      if (!ids.length) return [];
-      const out = [];
-      for (let i = 0; i < ids.length; i += 100) {
-        const q = ids.slice(i, i+100).map(id => `user_id=${id}`).join('&');
-        const d = await twitchFetch(`streams?${q}&first=100`);
-        out.push(...(d.data || []));
-      }
-      return out;
-    }
-
-    async function enrichProfiles(channels) {
-      const out = [];
-      for (let i = 0; i < channels.length; i += 100) {
-        const chunk = channels.slice(i, i+100);
-        const q = chunk.map(c => `id=${c.broadcaster_id}`).join('&');
-        try {
-          const d = await twitchFetch(`users?${q}`);
-          const map = {}; for (const u of d.data||[]) map[u.id] = u.profile_image_url;
-          out.push(...chunk.map(ch => ({ ...ch, profile_image_url: map[ch.broadcaster_id]||null })));
-        } catch { out.push(...chunk); }
-      }
-      return out;
-    }
-
-    function mergeLive(channels, streams) {
-      const map = {}; for (const s of streams) map[s.user_id] = s;
-      return channels.map(ch => ({ ...ch, stream: map[ch.broadcaster_id]||null }));
-    }
-
     const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-    /* ══ PROGRESS ══════════════════════════ */
+    /* ──────────────────────────────────────
+       STATE & DOM
+    ────────────────────────────────────── */
+    let allChannels = [];
+    let sortMode    = 'recent';
 
-    function updateProgress(count, total) {
-      $('progress-count').textContent = count;
-      const pct = total ? Math.min(100, Math.round(count / total * 100)) : null;
-      $('progress-fill').style.width = pct ? `${pct}%` : '30%';
-    }
+    const $ = id => document.getElementById(id);
+    const usernameEl  = $('username');
+    const searchBtn   = $('search-btn');
+    const filterInput = $('filter-input');
 
-    function showProgress(on) {
-      $('load-progress').classList.toggle('visible', on);
-    }
-
-    /* ══ SEARCH ════════════════════════════ */
-
+    /* ──────────────────────────────────────
+       SEARCH
+    ────────────────────────────────────── */
     async function doSearch() {
       const login = usernameEl.value.trim();
       if (!login) return;
@@ -460,51 +317,53 @@
       $('grid').innerHTML = '';
       $('stats-bar').classList.remove('visible');
       $('controls').classList.remove('visible');
-      setSpinner(true);
       hideMessage();
-      showProgress(false);
+      showProgress(true);
+      updateProgress(0, null);
+      $('progress-text').textContent = `Recherche de "${login}"…`;
       searchBtn.disabled = true;
 
       try {
-        const user = await getUser(login);
-        $('user-avatar').src         = user.profile_image_url;
-        $('user-name').textContent   = user.display_name;
-        $('user-handle').textContent = '@' + user.login;
+        // Get user profile
+        const profile = await getProfile(login);
+        if (!profile || profile.__typename !== 'User') {
+          throw new Error(`Utilisateur "${login}" introuvable.`);
+        }
 
-        setSpinner(false);
-        showProgress(true);
+        $('user-avatar').src         = profile.profileImageURL;
+        $('user-name').textContent   = profile.displayName;
+        $('user-handle').textContent = '@' + profile.login;
 
-        // Fetch ALL pages
-        allChannels = await getAllFollowings(user.id);
+        $('progress-text').textContent = `Récupération des followings de ${profile.displayName}…`;
+
+        // Get followings (with progress)
+        allChannels = await getAllFollowings(login, null, (count, total) => {
+          updateProgress(count, total);
+        });
+
+        showProgress(false);
 
         if (!allChannels.length) {
-          showProgress(false);
           $('stats-bar').classList.add('visible');
-          showMessage('🔭', `${user.display_name} ne suit personne.`, false);
+          showMessage('🔭', `${profile.displayName} ne suit personne.`, false);
           return;
         }
 
-        // Enrich with profiles + live data
-        updateProgress(allChannels.length, allChannels.length);
-        const streams = await getLiveStreams(allChannels.map(c => c.broadcaster_id));
-        allChannels   = mergeLive(allChannels, streams);
-        allChannels   = await enrichProfiles(allChannels);
-
-        showProgress(false);
         $('stats-bar').classList.add('visible');
         $('controls').classList.add('visible');
         applyFilters();
 
       } catch (err) {
-        setSpinner(false);
         showProgress(false);
-        showMessage('❌', err.message, true);
+        showMessage('❌', err.message || 'Une erreur est survenue.', true);
       } finally {
         searchBtn.disabled = false;
       }
     }
 
-    /* ══ RENDER ════════════════════════════ */
+    /* ──────────────────────────────────────
+       RENDER
+    ────────────────────────────────────── */
 
     function applyFilters() {
       const q  = filterInput.value.toLowerCase().trim();
@@ -512,36 +371,52 @@
 
       let f = allChannels.filter(ch => {
         if (lo && !ch.stream) return false;
-        if (q && !ch.broadcaster_name.toLowerCase().includes(q) && !ch.broadcaster_login.includes(q)) return false;
+        if (q && !ch.displayName.toLowerCase().includes(q) && !ch.login.toLowerCase().includes(q)) return false;
         return true;
       });
 
       if (sortMode === 'recent') {
-        f.sort((a,b) => new Date(b.followed_at) - new Date(a.followed_at));
+        f.sort((a,b) => new Date(b.followedAt) - new Date(a.followedAt));
       } else if (sortMode === 'oldest') {
-        f.sort((a,b) => new Date(a.followed_at) - new Date(b.followed_at));
+        f.sort((a,b) => new Date(a.followedAt) - new Date(b.followedAt));
       } else if (sortMode === 'name') {
-        f.sort((a,b) => a.broadcaster_name.localeCompare(b.broadcaster_name,'fr',{sensitivity:'base'}));
+        f.sort((a,b) => a.displayName.localeCompare(b.displayName, 'fr', {sensitivity:'base'}));
       }
 
       renderCards(f);
       $('count-total').textContent = allChannels.length;
-      $('count-live').textContent  = allChannels.filter(c=>c.stream).length;
+      $('count-live').textContent  = allChannels.filter(c => c.stream).length;
+    }
+
+    function formatFollowDate(isoString) {
+      if (!isoString) return null;
+      const d = new Date(isoString);
+      return {
+        date: d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }),
+        time: d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      };
     }
 
     function renderCards(channels) {
-      const grid = $('grid'); grid.innerHTML = '';
+      const grid = $('grid');
+      grid.innerHTML = '';
+
       channels.forEach((ch, i) => {
         const a = document.createElement('a');
         a.className = 'channel-card';
-        a.href      = `https://twitch.tv/${ch.broadcaster_login}`;
-        a.target    = '_blank'; a.rel = 'noopener noreferrer';
+        a.href      = `https://twitch.tv/${ch.login}`;
+        a.target    = '_blank';
+        a.rel       = 'noopener noreferrer';
         a.style.animationDelay = `${Math.min(i, 40) * 12}ms`;
 
         // Avatar
-        const wrap = document.createElement('div'); wrap.className = 'card-avatar-wrap';
-        const img  = document.createElement('img');  img.className = 'card-avatar'; img.alt = ch.broadcaster_name; img.loading = 'lazy';
-        img.src = ch.profile_image_url || '';
+        const wrap = document.createElement('div');
+        wrap.className = 'card-avatar-wrap';
+        const img = document.createElement('img');
+        img.className = 'card-avatar';
+        img.alt = ch.displayName;
+        img.loading = 'lazy';
+        img.src = ch.avatar || '';
         img.onerror = () => { img.src = 'https://static-cdn.jtvnw.net/user-default-pictures-uv/ead5c8b2-f0c3-11e9-9a2d-784f43822e80-profile_image-70x70.png'; };
         wrap.appendChild(img);
         if (ch.stream) {
@@ -549,24 +424,36 @@
           const b   = document.createElement('span'); b.className = 'live-badge'; b.textContent = 'LIVE'; wrap.appendChild(b);
         }
 
-        // Name
-        const name = document.createElement('div'); name.className = 'card-name'; name.textContent = ch.broadcaster_name;
+        const name = document.createElement('div');
+        name.className = 'card-name';
+        name.textContent = ch.displayName;
         a.appendChild(wrap);
         a.appendChild(name);
 
-        if (ch.broadcaster_name.toLowerCase() !== ch.broadcaster_login) {
-          const h = document.createElement('div'); h.className = 'card-display'; h.textContent = '@' + ch.broadcaster_login; a.appendChild(h);
+        if (ch.displayName.toLowerCase() !== ch.login.toLowerCase()) {
+          const h = document.createElement('div');
+          h.className = 'card-display';
+          h.textContent = '@' + ch.login;
+          a.appendChild(h);
         }
 
-        // Live info
         if (ch.stream) {
-          const g = document.createElement('div'); g.className = 'card-game'; g.textContent = ch.stream.game_name || 'Stream en cours'; a.appendChild(g);
-          const v = document.createElement('div'); v.className = 'card-viewers'; v.innerHTML = `<span>${ch.stream.viewer_count?.toLocaleString('fr-FR')}</span> viewers`; a.appendChild(v);
+          if (ch.stream.game?.name) {
+            const g = document.createElement('div');
+            g.className = 'card-game';
+            g.textContent = ch.stream.game.name;
+            a.appendChild(g);
+          }
+          if (ch.stream.viewersCount != null) {
+            const v = document.createElement('div');
+            v.className = 'card-viewers';
+            v.innerHTML = `<span>${ch.stream.viewersCount.toLocaleString('fr-FR')}</span> viewers`;
+            a.appendChild(v);
+          }
         }
 
-        // Follow date
-        if (ch.followed_at) {
-          const fd = formatFollowDate(ch.followed_at);
+        if (ch.followedAt) {
+          const fd = formatFollowDate(ch.followedAt);
           const dateEl = document.createElement('div');
           dateEl.className = 'card-date';
           dateEl.innerHTML = `<span class="date-label">Suivi depuis</span><span class="date-val">${fd.date}</span> <span class="date-time">à ${fd.time}</span>`;
@@ -577,45 +464,50 @@
       });
     }
 
-    /* ══ UI HELPERS ════════════════════════ */
+    /* ──────────────────────────────────────
+       UI HELPERS
+    ────────────────────────────────────── */
 
-    function setSpinner(on) { $('spinner').classList.toggle('visible', on); }
+    function updateProgress(count, total) {
+      $('progress-count').textContent = count;
+      const pct = total ? Math.min(100, Math.round(count / total * 100)) : Math.min(95, count / 5);
+      $('progress-fill').style.width = `${pct}%`;
+    }
+
+    function showProgress(on) {
+      $('load-progress').classList.toggle('visible', on);
+      if (!on) $('progress-fill').style.width = '0%';
+    }
+
     function showMessage(emoji, text, isError) {
       const el = $('message'); el.classList.add('visible'); el.classList.toggle('error', isError);
-      $('msg-emoji').textContent = emoji; $('msg-text').textContent = text;
-      $('msg-detail').textContent = isError ? 'Vérifie le pseudo ou reconnecte-toi.' : '';
+      $('msg-emoji').textContent = emoji;
+      $('msg-text').textContent  = text;
+      $('msg-detail').textContent = isError ? 'Vérifie le pseudo saisi.' : '';
     }
     function hideMessage() { $('message').classList.remove('visible'); }
 
-    /* ══ EVENTS ════════════════════════════ */
+    /* ──────────────────────────────────────
+       EVENTS
+    ────────────────────────────────────── */
 
-    loginBtn.addEventListener('click', doLogin);
-    logoutBtn.addEventListener('click', logout);
     searchBtn.addEventListener('click', doSearch);
-    usernameEl.addEventListener('keydown', e => { if (e.key === 'Enter' && !searchBtn.disabled) doSearch(); });
+    usernameEl.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
     filterInput.addEventListener('input', applyFilters);
     $('online-only').addEventListener('change', applyFilters);
 
-    $('sort-follow').addEventListener('click', () => {
-      sortMode = 'recent';
-      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
-      $('sort-follow').classList.add('active');
+    function setSort(mode, btnId) {
+      sortMode = mode;
+      ['sort-recent','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
+      $(btnId).classList.add('active');
       applyFilters();
-    });
-    $('sort-oldest').addEventListener('click', () => {
-      sortMode = 'oldest';
-      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
-      $('sort-oldest').classList.add('active');
-      applyFilters();
-    });
-    $('sort-name').addEventListener('click', () => {
-      sortMode = 'name';
-      ['sort-follow','sort-oldest','sort-name'].forEach(id => $(id).classList.remove('active'));
-      $('sort-name').classList.add('active');
-      applyFilters();
-    });
+    }
+    $('sort-recent').addEventListener('click', () => setSort('recent', 'sort-recent'));
+    $('sort-oldest').addEventListener('click', () => setSort('oldest', 'sort-oldest'));
+    $('sort-name').addEventListener('click',   () => setSort('name',   'sort-name'));
 
-    init();
+    /* Initial state */
+    showMessage('👾', 'Entre un pseudo Twitch pour commencer.', false);
   </script>
 </body>
 </html>
